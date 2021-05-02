@@ -1,17 +1,11 @@
 const X = 'x'
 const O = 'o'
 const cellElements = document.querySelectorAll('[data-cell]')
-
 let circleT
-startGame()
 
-function startGame() {
-    cellElements.forEach(cell => {
-        cell.addEventListener("click", handleClick, { once: true })
-    })
-
-}
-
+const win_message_text = document.querySelector('[win-msg-txt]')
+const win_message = document.getElementById('win-msg')
+const restart = document.getElementById('rbutton')
 var board = [
     [0, 0, 0],
     [0, 0, 0],
@@ -19,6 +13,28 @@ var board = [
 ]
 
 var available = 9
+
+startGame()
+
+restart.addEventListener('click', startGame)
+
+function startGame() {
+    win_message.classList.remove('show')
+    cellElements.forEach(cell => {
+        cell.classList.remove(X)
+        cell.classList.remove(O)
+        cell.removeEventListener('click', handleClick)
+        cell.addEventListener("click", handleClick, { once: true })
+    })
+    available = 9
+    board = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
+    ]
+}
+
+
 
 
 function handleClick(e) {
@@ -36,19 +52,24 @@ function handleClick(e) {
     available = available - 1
 
     placeMark(cell, current)
-    swapTurn()
+
     var k = checkWin(current)
-
     if (k == 1) {
+        win_message_text.innerText = 'Player O \n Wins!!!'
+        win_message.classList.add('show')
         console.log("O wins")
+        startGame()
+
     } else if (k == 2) {
-        console.log("X wins")
+        win_message_text.innerText = 'Player X \n Wins!!!'
+        win_message.classList.add('show')
+        startGame()
     } else if (k == 0) {
-        console.log("tie")
-    } else {
-
+        win_message_text.innerText = 'Tie !!!'
+        win_message.classList.add('show')
+        startGame()
     }
-
+    swapTurn()
 }
 
 function placeMark(cell, current) {
