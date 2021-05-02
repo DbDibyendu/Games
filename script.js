@@ -19,11 +19,11 @@ startGame()
 restart.addEventListener('click', startGame)
 
 function startGame() {
+    win_message_text.innerText = `Let's Play`;
     win_message.classList.remove('show')
     cellElements.forEach(cell => {
         cell.classList.remove(X)
         cell.classList.remove(O)
-        cell.removeEventListener('click', handleClick)
         cell.addEventListener("click", handleClick, { once: true })
     })
     available = 9
@@ -32,9 +32,9 @@ function startGame() {
         [0, 0, 0],
         [0, 0, 0]
     ]
+    circleT = 0
+    return;
 }
-
-
 
 
 function handleClick(e) {
@@ -54,20 +54,26 @@ function handleClick(e) {
     placeMark(cell, current)
 
     var k = checkWin(current)
+    let flag = 0
     if (k == 1) {
+        flag = 1
         win_message_text.innerText = 'Player O \n Wins!!!'
         win_message.classList.add('show')
-        console.log("O wins")
-        startGame()
-
     } else if (k == 2) {
+        flag = 1
         win_message_text.innerText = 'Player X \n Wins!!!'
         win_message.classList.add('show')
-        startGame()
     } else if (k == 0) {
+        flag = 1
         win_message_text.innerText = 'Tie !!!'
         win_message.classList.add('show')
-        startGame()
+    }
+    if (flag == 1) {
+        cellElements.forEach(cell => {
+
+            cell.removeEventListener('click', handleClick)
+
+        })
     }
     swapTurn()
 }
