@@ -74,26 +74,6 @@ h1 {
     cursor: pointer;
 }
 
-.cell:nth-child(1),
-.cell:nth-child(2),
-.cell:nth-child(3) {
-    border-top: none;
-}
-
-.cell:nth-child(7),
-.cell:nth-child(8),
-.cell:nth-child(9) {
-    border-bottom: none;
-}
-
-.cell:nth-child(3n+1) {
-    border-left: none;
-}
-
-.cell:nth-child(3n+3) {
-    border-right: none;
-}
-
 .cell.x::before,
 .cell.x::after {
     content: '';
@@ -163,8 +143,4 @@ button {
 button:hover {
     background-color: rgb(41, 39, 39);
     color: white;
-}
-
-.win-msg.show {
-    display: flex;
 }
