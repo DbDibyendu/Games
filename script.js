@@ -19,7 +19,7 @@ startGame()
 restart.addEventListener('click', startGame)
 
 function startGame() {
-    win_message_text.innerText = `Let's Play`;
+    win_message_text.innerText = ``;
     win_message.classList.remove('show')
     cellElements.forEach(cell => {
         cell.classList.remove(X)
@@ -70,9 +70,7 @@ function handleClick(e) {
     }
     if (flag == 1) {
         cellElements.forEach(cell => {
-
             cell.removeEventListener('click', handleClick)
-
         })
     }
     swapTurn()
