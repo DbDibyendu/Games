@@ -127,25 +127,25 @@ h1 {
     flex-direction: column;
 }
 
-button {
-    position: fixed;
-    top: 650px;
-    left: 700px;
+.btn-group button {
+    position: relative;
+    top: 90px;
+    left: 570px;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
-    border-radius: 5%;
-    border: 2px solid white;
+    font-size: 1.2rem;
+    border-radius: 2%;
     background-color: grey;
-    padding: 12px 28px;
+    padding: 10px 24px;
+    /* Some padding */
     cursor: pointer;
 }
 
-button {
+.btn-group button {
     transition-duration: 0.4s;
 }
 
-button:hover {
+.btn-group button:hover {
     background-color: rgb(41, 39, 39);
     color: white;
 }
