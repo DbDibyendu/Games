@@ -1,8 +1,8 @@
 const X = 'x'
 const O = 'o'
-const cellElements = document.querySelectorAll('[data-cell]')
 let circleT
 
+const cellElements = document.querySelectorAll('[data-cell]')
 const win_message_text = document.querySelector('[win-msg-txt]')
 const win_message = document.getElementById('win-msg')
 const vsPlayer = document.getElementById('playerbutton')
@@ -13,14 +13,19 @@ var board = [
     [0, 0, 0],
     [0, 0, 0]
 ]
+var flag = -1
 
-var available = 9
+startGame2()
 
-startGame()
 
-vsCPU.addEventListener('click', startGame)
+vsCPU.addEventListener('click', startGame1)
 
-function startGame() {
+vsPlayer.addEventListener('click', startGame2)
+
+
+//! Cpu Game
+function startGame1() {
+    flag = 1
     win_message_text.innerText = ``;
     win_message.classList.remove('show')
     cellElements.forEach(cell => {
@@ -28,7 +33,6 @@ function startGame() {
         cell.classList.remove(O)
         cell.addEventListener("click", handleClick, { once: true })
     })
-    available = 9
     board = [
         [0, 0, 0],
         [0, 0, 0],
@@ -38,6 +42,24 @@ function startGame() {
     return;
 }
 
+//! 2 Player Game
+function startGame2() {
+    flag = 2
+    win_message_text.innerText = ``;
+    win_message.classList.remove('show')
+    cellElements.forEach(cell => {
+        cell.classList.remove(X)
+        cell.classList.remove(O)
+        cell.addEventListener("click", handleClick, { once: true })
+    })
+    board = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
+    ]
+    circleT = 0
+    return;
+}
 
 function handleClick(e) {
     const cell = e.target
@@ -54,13 +76,18 @@ function handleClick(e) {
         } else if (current == 'x') {
             board[x][y] = 2;
         }
-        available = available - 1
 
         placeMark(cell, current)
         var k = checkWin()
         printMsg(k)
-        if (k == -1)
-            bestMove()
+        if (k == -1) {
+            if (flag == 1)
+                bestMove()
+            else if (flag == 2) {
+                swapTurn()
+            }
+        }
+
     }
 }
 

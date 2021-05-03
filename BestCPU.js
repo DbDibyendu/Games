@@ -15,10 +15,8 @@ function bestMove() {
                     move = { i, j };
                 }
             }
-            console.log(score, i, j)
         }
     }
-    console.log('\n')
     let t = move.i * 3 + move.j;
     board[move.i][move.j] = 1;
     document.getElementById(t).classList.add('o')

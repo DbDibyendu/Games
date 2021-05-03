@@ -8,7 +8,7 @@ function level1() {
                 let t = i * 3 + j;
                 current = 'o'
                 document.getElementById(t).classList.add(current)
-                var k = checkWin(current)
+                var k = checkWin()
                 printMsg(k)
                 return;
             }
