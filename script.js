@@ -18,7 +18,7 @@ var available = 9
 
 startGame()
 
-vsPlayer.addEventListener('click', startGame)
+vsCPU.addEventListener('click', startGame)
 
 function startGame() {
     win_message_text.innerText = ``;
@@ -121,93 +121,16 @@ function checkWin() {
         winner = board[2][0];
     }
 
-    if (winner == -1 && available == 0) {
+    if (winner == -1) {
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (board[i][j] == 0) {
+                    return winner;
+                }
+            }
+        }
         return 0;
     } else {
         return winner;
-    }
-}
-
-
-
-function bestMove() {
-    // AI to make its turn
-    let t = 0;
-    let bestScore = -Infinity;
-    let move;
-    for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-            // Is the spot available?
-            let score
-            if (board[i][j] == 0) {
-                board[i][j] = 1;
-                score = minimax(board, 0, false);
-                board[i][j] = 0;
-                if (score > bestScore) {
-                    bestScore = score;
-                    move = { i, j };
-                }
-            }
-            console.log(score, i, j)
-        }
-    }
-    t = move.i * 3 + move.j;
-    board[move.i][move.j] = 1;
-    document.getElementById(t).classList.add('o')
-    var k = checkWin()
-    printMsg(k)
-}
-
-
-
-
-function minimax(board, depth, isMaximizing) {
-
-    let result = checkWin();
-    if (result != -1) {
-        if (result == 0)
-            return 0;
-        else if (result == 1) { //! o 
-            return -10;
-        } else {
-            return 10 //! x
-        }
-    }
-
-    if (isMaximizing == true) {
-        let bestScore = -Infinity;
-        for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 3; j++) {
-                // Is the spot available?
-                if (board[i][j] == 0) {
-                    board[i][j] = 1;
-                    let score = minimax(board, depth + 1, false);
-                    board[i][j] = 0
-                        //! max score
-                    if (score > bestScore) {
-                        bestScore = score;
-                    }
-                }
-            }
-        }
-        return bestScore;
-
-    } else {
-        let bestScore = Infinity;
-        for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 3; j++) {
-                // Is the spot available?
-                if (board[i][j] == 0) {
-                    board[i][j] = 2;
-                    let score = minimax(board, depth + 1, true);
-                    board[i][j] = 0;
-                    //! min score
-                    if (score < bestScore) {
-                        bestScore = score;
-                    }
-                }
-            }
-        }
-        return bestScore;
     }
 }
