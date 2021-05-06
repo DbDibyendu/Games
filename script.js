@@ -6,7 +6,8 @@ const cellElements = document.querySelectorAll('[data-cell]')
 const win_message_text = document.querySelector('[win-msg-txt]')
 const win_message = document.getElementById('win-msg')
 const vsPlayer = document.getElementById('playerbutton')
-const vsCPU = document.getElementById('computerbutton')
+const vsCPU2 = document.getElementById('computerbutton2')
+const vsCPU1 = document.getElementById('computerbutton1')
 
 var board = [
     [0, 0, 0],
@@ -18,14 +19,34 @@ var flag = -1
 startGame2()
 
 
-vsCPU.addEventListener('click', startGame1)
+vsCPU2.addEventListener('click', startGame_2)
+vsCPU1.addEventListener('click', startGame_1)
 
 vsPlayer.addEventListener('click', startGame2)
 
 
-//! Cpu Game
-function startGame1() {
+//! Cpu Game Hard
+function startGame_2() {
     flag = 1
+    win_message_text.innerText = ``;
+    win_message.classList.remove('show')
+    cellElements.forEach(cell => {
+        cell.classList.remove(X)
+        cell.classList.remove(O)
+        cell.addEventListener("click", handleClick, { once: true })
+    })
+    board = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
+    ]
+    circleT = 0
+    return;
+}
+
+//! Cpu Game Easy
+function startGame_1() {
+    flag = 0
     win_message_text.innerText = ``;
     win_message.classList.remove('show')
     cellElements.forEach(cell => {
@@ -85,6 +106,8 @@ function handleClick(e) {
                 bestMove()
             else if (flag == 2) {
                 swapTurn()
+            } else {
+                level1()
             }
         }
 
