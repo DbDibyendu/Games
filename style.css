@@ -33,7 +33,8 @@ body {
 }
 
 .header {
-    padding: 30px;
+    top: 20px;
+    padding: 10px;
     text-align: center;
     color: white;
     font-size: 30px;
@@ -48,7 +49,7 @@ h1 {
 
 .board {
     width: 100vw;
-    height: 50vh;
+    height: 70vh;
     display: grid;
     justify-content: center;
     align-content: center;
@@ -118,8 +119,8 @@ h1 {
 
 .win-msg {
     position: fixed;
-    top: 120px;
-    left: 1280px;
+    top: 130px;
+    left: 670px;
     justify-content: center;
     align-items: center;
     color: white;
@@ -129,8 +130,8 @@ h1 {
 
 .btn-group button {
     position: relative;
-    top: 90px;
-    left: 550px;
+    top: 0px;
+    left: 545px;
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;

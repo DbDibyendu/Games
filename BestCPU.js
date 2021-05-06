@@ -8,6 +8,7 @@ function bestMove() {
             let score
             if (board[i][j] == 0) {
                 board[i][j] = 1;
+                let t = i * 3 + j;
                 score = minimax(board, false);
                 board[i][j] = 0;
                 if (score > bestScore) {

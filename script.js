@@ -118,11 +118,11 @@ function printMsg(k) {
     let flag = 0
     if (k == 1) {
         flag = 1
-        win_message_text.innerText = 'Player O \n Wins!!!'
+        win_message_text.innerText = 'Player O Wins!!!'
         win_message.classList.add('show')
     } else if (k == 2) {
         flag = 1
-        win_message_text.innerText = 'Player X \n Wins!!!'
+        win_message_text.innerText = 'Player X Wins!!!'
         win_message.classList.add('show')
     } else if (k == 0) {
         flag = 1
